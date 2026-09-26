@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Binfluencer: guide for councils</title>
+  <meta name="description" content="How councils can send bin collection data to Binfluencer, by spreadsheet or API.">
+  <link rel="icon" href="favicon.png">
+  <style>
+    :root { color-scheme: light dark; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+      color: #14202e;
+      background: #f7f9fb;
+    }
+    h1 { font-size: 1.7rem; margin-bottom: 4px; }
+    h2 { font-size: 1.25rem; margin-top: 2.2rem; }
+    h3 { font-size: 1.05rem; margin-top: 1.6rem; margin-bottom: 0.3rem; }
+    .updated { color: #5b6b7c; margin-top: 0; }
+    a { color: #0b6bcb; }
+    ul, ol { padding-left: 1.2rem; }
+    li { margin-bottom: 0.4rem; }
+    .box { background: #e9f1f9; border-radius: 12px; padding: 12px 16px; }
+    .options { display: flex; gap: 12px; flex-wrap: wrap; }
+    .option { flex: 1 1 260px; background: #e9f1f9; border-radius: 12px; padding: 12px 16px; }
+    .option h3 { margin-top: 0.2rem; }
+    code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 0.9em; background: #e9f1f9; padding: 1px 5px; border-radius: 6px; }
+    pre { background: #14202e; color: #e6edf3; border-radius: 12px; padding: 12px 14px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5; }
+    pre code { background: none; padding: 0; color: inherit; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.92rem; }
+    th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #dde5ee; vertical-align: top; }
+    .muted { color: #5b6b7c; }
+    footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #dde5ee; text-align: center; color: #5b6b7c; font-size: 0.9rem; }
+    footer img { width: 120px; height: auto; border-radius: 12px; display: block; margin: 0 auto 8px; }
+    @media (prefers-color-scheme: dark) {
+      body { color: #e6edf3; background: #0f1720; }
+      .updated, .muted, footer { color: #9fb0c1; }
+      a { color: #6cb2ff; }
+      .box, .option, code { background: #172433; }
+      pre { background: #060b11; }
+      th, td { border-bottom-color: #243447; }
+      footer { border-top-color: #243447; }
+    }
+  </style>
+</head>
+<body>
+  <p><a href="index.html">← Binfluencer</a></p>
+  <h1>Binfluencer for councils</h1>
+  <p class="updated">A simple guide to sending us your bin collection data.</p>
+
+  <p>
+    Binfluencer shows residents which bin goes out next and reminds them the night before.
+    Right now we read your published calendars. If you send us your data directly, residents get
+    official dates straight from you, including holiday changes, and we stop reading your website.
+    Fewer "when's my bin day?" calls for everyone.
+  </p>
+
+  <h2>Two ways to send your data</h2>
+  <div class="options">
+    <div class="option">
+      <h3>1. By spreadsheet</h3>
+      <p>No technical work needed. Email us a spreadsheet and we'll load it for you. Send an updated one whenever your
+      dates change.</p>
+      <p><a href="#spreadsheet">What to put in it ↓</a></p>
+    </div>
+    <div class="option">
+      <h3>2. By API</h3>
+      <p>Your systems send updates to us automatically. Four simple steps, and your team can have it running in an afternoon.</p>
+      <p><a href="#api">How it works ↓</a></p>
+    </div>
+  </div>
+
+  <h2>The three things we need</h2>
+  <p>Whichever way you choose, we need the same three things:</p>
+  <ol>
+    <li><strong>Your bins:</strong> what each bin is called, its colour and how often it's collected.</li>
+    <li><strong>Your homes:</strong> each home's UPRN, address, postcode and which collection round it's on.</li>
+    <li><strong>Your dates:</strong> for each round, which bin is collected on which date.</li>
+  </ol>
+  <p class="muted">Homes on the same round share one calendar, so you only send the dates once per round, not once per home.</p>
+
+  <h2 id="spreadsheet">Option 1: spreadsheet</h2>
+  <p>One spreadsheet with three tabs. Excel, Google Sheets or CSV files are all fine.</p>
+
+  <h3>Tab "Bins"</h3>
+  <table>
+    <tr><th>Bin</th><th>Colour</th><th>Every how many days</th></tr>
+    <tr><td>Recycling</td><td>blue</td><td>14</td></tr>
+    <tr><td>General</td><td>green</td><td>21</td></tr>
+  </table>
+
+  <h3>Tab "Homes"</h3>
+  <table>
+    <tr><th>UPRN</th><th>Address</th><th>Postcode</th><th>Round</th></tr>
+    <tr><td>000125006743</td><td>115 Alexandra Parade, Dunoon</td><td>PA23 8AW</td><td>COW_22</td></tr>
+  </table>
+
+  <h3>Tab "Dates"</h3>
+  <table>
+    <tr><th>Round</th><th>Bin</th><th>Date</th></tr>
+    <tr><td>COW_22</td><td>Recycling</td><td>2026-10-07</td></tr>
+    <tr><td>COW_22</td><td>General</td><td>2026-10-14</td></tr>
+  </table>
+
+  <p>Email it to <a href="mailto:lookbehindyousoftware@gmail.com">lookbehindyousoftware@gmail.com</a>.
+  Please write dates as year-month-day (<code>2026-10-07</code>) so nobody mixes up October and July.</p>
+
+  <h2 id="api">Option 2: API</h2>
+
+  <h3>Before you start</h3>
+  <ul>
+    <li><strong>Get your key.</strong> Email us and we'll send your council ID (for example <code>argyll-bute</code>) and a
+    private API key starting <code>bfk_</code>. Keep the key secret, like a password.</li>
+    <li><strong>Every request</strong> goes to this address, with your key in the header:</li>
+  </ul>
+<pre><code>https://iwjqwswwcxitbafaajic.supabase.co
+  /functions/v1/api/v1
+
+Authorization: Bearer bfk_your_key_here
+Content-Type: application/json</code></pre>
+
+  <h3>Step 1. Tell us your bins</h3>
+<pre><code>PUT /councils/argyll-bute/bin-types
+
+{
+  "binTypes": [
+    {
+      "code": "Recycling",
+      "label": "Blue bin (mixed recycling)",
+      "colour": "blue",
+      "frequencyDays": 14
+    },
+    {
+      "code": "General",
+      "label": "Green bin (general waste)",
+      "colour": "green",
+      "frequencyDays": 21
+    }
+  ]
+}</code></pre>
+  <p class="muted">The <code>code</code> is the name you'll use for that bin in step 3.</p>
+
+  <h3>Step 2. Tell us your homes</h3>
+<pre><code>PUT /councils/argyll-bute/properties
+
+{
+  "properties": [
+    {
+      "externalId": "000125006743",
+      "address": "115 Alexandra Parade, Dunoon",
+      "postcode": "PA23 8AW",
+      "routeKey": "COW_22"
+    }
+  ]
+}</code></pre>
+  <p class="muted"><code>externalId</code> is the UPRN and <code>routeKey</code> is the collection round. Up to 5,000 homes per request, so send big lists in batches.</p>
+
+  <h3>Step 3. Send the dates for each round</h3>
+<pre><code>PUT /councils/argyll-bute/routes/COW_22
+    /collections
+
+{
+  "collections": [
+    { "binType": "Recycling", "date": "2026-10-07" },
+    { "binType": "General",   "date": "2026-10-14" }
+  ]
+}</code></pre>
+  <p class="muted">This replaces every date for that round from the earliest date you send. So to make a change, just send the
+  full, updated list again. Up to 2,000 dates per request.</p>
+
+  <h3>Step 4. Check it worked</h3>
+<pre><code>GET /councils/argyll-bute/status</code></pre>
+  <p class="muted">Shows how many homes and rounds we hold for you, when you last updated, and any rounds that are running out of dates.</p>
+
+  <h3>Trying it from the command line</h3>
+<pre><code>curl -X PUT \
+  "https://iwjqwswwcxitbafaajic.supabase.co/functions/v1/api/v1/councils/argyll-bute/routes/COW_22/collections" \
+  -H "Authorization: Bearer bfk_your_key_here" \
+  -H "Content-Type: application/json" \
+  -d '{"collections":[{"binType":"Recycling","date":"2026-10-07"}]}'</code></pre>
+
+  <h2>Good to know</h2>
+  <ul>
+    <li><strong>How often to send:</strong> whenever your dates change, and at least once a month with the next few months of dates.</li>
+    <li><strong>Holiday changes:</strong> just send the corrected dates for that round. Residents' reminders update automatically.</li>
+    <li><strong>Dates</strong> are always year-month-day, like <code>2026-10-07</code>. Postcodes can be in any format.</li>
+    <li><strong>If something's wrong</strong> we reject the request and explain why, and nothing is saved. Your previous data stays as it was.</li>
+  </ul>
+
+  <h3>If a request fails</h3>
+  <table>
+    <tr><th>Code</th><th>What it means</th></tr>
+    <tr><td>401</td><td>The key is missing or wrong.</td></tr>
+    <tr><td>403</td><td>That key belongs to a different council.</td></tr>
+    <tr><td>400 / 422</td><td>Something in the data needs fixing, for example a bin name we don't know or a date like 2026-13-01. The reply lists exactly which items.</td></tr>
+  </table>
+
+  <p>Want the full technical detail? Here's the
+  <a href="https://iwjqwswwcxitbafaajic.supabase.co/functions/v1/api/v1/openapi.json">OpenAPI specification</a>,
+  which your developers can load into most API tools.</p>
+
+  <div class="box" style="margin-top: 2rem;">
+    <p><strong>Questions?</strong> We're happy to help your team get set up. Email
+    <a href="mailto:lookbehindyousoftware@gmail.com">lookbehindyousoftware@gmail.com</a>.</p>
+  </div>
+
+  <footer>
+    <img src="lby-logo.png" alt="Look Behind You Software logo">
+    Made with 💙 in Scotland · © 2026 Look Behind You Software
+  </footer>
+</body>
+</html>
