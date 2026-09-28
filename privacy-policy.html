@@ -39,12 +39,14 @@
 </head>
 <body>
   <h1>Binfluencer: Privacy Policy</h1>
-  <p class="updated">Last updated: 27 September 2026</p>
+  <p class="updated">Last updated: 28 September 2026</p>
 
   <div class="box">
     <p><strong>The short version.</strong> Binfluencer doesn't need an account. Your saved addresses and reminder
     settings stay on your phone. To find your bin days, our server receives the postcode and address you choose, but it
-    never knows who you are. The app shows small adverts from Google AdMob, and you choose whether they're personalised.</p>
+    never knows who you are. If you share a home with your household, we keep the nickname you choose and, if you allow
+    notifications, a token to send household alerts to your phone. The app shows small adverts from Google AdMob, and you
+    choose whether they're personalised.</p>
   </div>
 
   <h2>1. Who we are</h2>
@@ -89,9 +91,23 @@
   the council's website on a schedule. Your phone never contacts council websites itself, unless you tap a link to your
   council's guidance, which opens it in your browser.</p>
 
-  <h2>5. Reminders</h2>
-  <p>Night-before reminders are scheduled by your phone itself. We don't receive a notification token, a device ID or
-  anything else to send them. You can turn reminders off in the app or in your phone's settings at any time.</p>
+  <h2>5. Reminders and sharing a home</h2>
+  <p>Night-before reminders are scheduled by your phone itself. If you don't share a home, we don't receive a
+  notification token, a device ID or anything else to send them, and the "last call" nudge is scheduled by your phone
+  too. You can turn reminders and nudges off in the app or in your phone's settings at any time.</p>
+  <p>If you <strong>share a home</strong> with the people you live with, or join one with a code, our server keeps:</p>
+  <ul>
+    <li>the nickname you type (for example "Jamie"), so the others know who took the bins out;</li>
+    <li>which home the household is for, and its share code (codes stop working after 7 days);</li>
+    <li>who tapped "Done, bins are out" for each collection day, and when;</li>
+    <li>your last call nudge setting (on or off, and the time);</li>
+    <li>if you allow notifications, your phone's push notification token, and whether it's an iPhone or Android phone;</li>
+    <li>a scrambled (hashed) copy of the secret code your phone uses to prove it's part of the household.</li>
+  </ul>
+  <p>We use this only to run the household: to tell the others when someone taps Done or joins, and to send one last
+  call nudge if nobody has. We don't ask for your name, email or phone number. When you leave a household, or someone
+  who shared it removes you, your membership and push token are deleted; when the last person leaves, the household is
+  deleted too. Records of which nudges were sent are deleted after 30 days.</p>
 
   <h2>6. Calendar subscription</h2>
   <p>If you choose to add your collections to your calendar, the app gives your calendar a web link for that address.
@@ -121,6 +137,8 @@
     <li><strong>Supabase</strong> hosts our server and database, on servers in London, UK.</li>
     <li><strong>Google AdMob</strong> provides the adverts (see section 8).</li>
     <li><strong>postcodes.io</strong> receives the postcode from our server to find your council.</li>
+    <li><strong>Expo</strong> passes household notifications from our server to Apple or Google, which deliver them to
+    your phone. Only used if you share a home and allow notifications.</li>
     <li><strong>Your council's website</strong> is where collection dates come from. Our server requests them, so the
     council does not receive any information about you.</li>
     <li><strong>Apple and Google</strong> provide the app stores and the notification system on your phone, and your
@@ -129,12 +147,14 @@
 
   <h2>10. Legal basis</h2>
   <p>Under UK data protection law, we process postcodes and addresses because we have a legitimate interest in providing
-  the service you asked for: showing your bin collection dates. We use them for nothing else. Personalised adverts are
+  the service you asked for: showing your bin collection dates. The same applies to household nicknames, push tokens
+  and Done taps if you choose to share a home. We use them for nothing else. Personalised adverts are
   based on your consent, which you can withdraw at any time.</p>
 
   <h2>11. Your rights</h2>
   <p>You can ask us to access, correct or delete personal data, withdraw your advertising consent, or object to how we use it. Because we don't know who you
-  are, the quickest way to remove your data is to delete the address in the app. To have an address record removed from
+  are, the quickest way to remove your data is to delete the address in the app (which also takes you out of its
+  household, if you share it) or to leave the household in Settings. To have an address record removed from
   our server, email us with the address. If you're unhappy with how we've handled your data, you can complain to the
   Information Commissioner's Office at <a href="https://ico.org.uk">ico.org.uk</a>.</p>
 
