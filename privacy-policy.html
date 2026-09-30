@@ -39,7 +39,7 @@
 </head>
 <body>
   <h1>Binfluencer: Privacy Policy</h1>
-  <p class="updated">Last updated: 28 September 2026</p>
+  <p class="updated">Last updated: 30 September 2026</p>
 
   <div class="box">
     <p><strong>The short version.</strong> Binfluencer doesn't need an account. Your saved addresses and reminder
@@ -70,7 +70,10 @@
     <li><strong>Your postcode.</strong> When you type a postcode, the app sends it to our server. Our server uses
     postcodes.io, an open postcode service, to work out which council covers it, then gets the list of addresses for
     that postcode from the council's website. We keep that list of addresses for up to 7 days so we don't have to ask
-    the council again every time.</li>
+    the council again every time. Some councils, such as the City of Edinburgh Council, publish street lists rather than
+    address lists. For those, postcodes.io also gives us the location of your postcode, and we match it to streets using
+    our own copy of the council's street list and open map data from OpenStreetMap. We already hold that data, so nothing
+    about you is sent to OpenStreetMap or to the council.</li>
     <li><strong>Your address.</strong> When you pick your address, our server stores the address, postcode, the
     council's reference number for the property and its collection dates, so it can keep the dates up to date.
     This record is not linked to your name, email, phone number or device, and everyone who picks the same address
@@ -114,9 +117,13 @@
   Your calendar app (for example Apple Calendar or Google Calendar) will then fetch the dates from our server regularly.
   Anyone who has the link can see the collection dates for that address, so only share it with people you choose.</p>
 
-  <h2>7. Technical logs</h2>
+  <h2>7. Technical logs and fair use</h2>
   <p>Like most online services, our hosting provider keeps short-lived technical logs, which include IP addresses, to keep
   the service secure and working. We don't use these to identify you, and they are kept for a short period only.</p>
+  <p>To stop anyone overloading the service or guessing household codes, our server limits how many requests one
+  connection can make in a short time. To count them it keeps a scrambled (hashed) version of the IP address, never the
+  address itself, next to a number. These counters are deleted after about a day, and we can't turn them back into an
+  IP address.</p>
 
   <h2>8. Advertising</h2>
   <p>Binfluencer is free and shows small adverts provided by Google AdMob. To show and measure adverts, AdMob collects
