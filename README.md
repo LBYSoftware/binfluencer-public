@@ -7,7 +7,7 @@ https://lbysoftware.github.io/binfluencer-public/
 - `councils.html`: guide for councils sending us their data (spreadsheet or API)
 - `privacy-policy.html`: privacy policy (use this link in the App Store and Google Play listings)
 
-Made with 💙 in Scotland · Look Behind You Software
+Made with 💙 in Scotland · Look Behind You Software Ltd
 
 Icons: `favicon.ico`, `bincent-32.png`, `bincent-192.png` and `apple-touch-icon.png` are Bincent, the mascot.
 `binfluencer-icon.png` is the app icon shown in the page header.
