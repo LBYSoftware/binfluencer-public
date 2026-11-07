@@ -39,6 +39,9 @@
     footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #dde5ee; text-align: center; color: #5b6b7c; font-size: 0.9rem; }
     footer img { width: 160px; height: auto; display: block; margin: 0 auto 8px; }
     audio { width: 100%; margin: 0.5rem 0 0; }
+    .get button { font: inherit; cursor: pointer; background: transparent; color: inherit; font-weight: 700; padding: 10px 18px; border-radius: 12px; border: 2px solid currentColor; }
+    .get button:hover { color: #0b6bcb; }
+    .share-note { font-size: 0.9rem; color: #5b6b7c; align-self: center; }
     @media (prefers-color-scheme: dark) {
       body { color: #e6edf3; background: #0f1720; }
       .tagline, footer, .stat span { color: #9fb0c1; }
@@ -47,6 +50,8 @@
       footer { border-top-color: #243447; }
       .get a { background: #e6edf3; color: #0f1720; }
       .get a:hover { background: #6cb2ff; }
+      .get button:hover { color: #6cb2ff; }
+      .share-note { color: #9fb0c1; }
     }
   </style>
 </head>
@@ -77,6 +82,8 @@
   <div class="get">
     <a href="https://apps.apple.com/gb/app/id6822167610">Download on the App Store</a>
     <a href="https://play.google.com/store/apps/details?id=com.lbysoftware.binfluencer&amp;pcampaignid=web_share">Get it on Google Play</a>
+    <button type="button" id="share-btn">Share Binfluencer</button>
+    <span class="share-note" id="share-note" role="status" aria-live="polite"></span>
   </div>
 
   <h2>Meet Bincent</h2>
@@ -86,7 +93,7 @@
     whichever bin is going out, because he's a professional.
   </p>
 
-  <h2>The Binfluencer jingle</h2>
+  <h2 id="jingle">The Binfluencer jingle</h2>
   <p>
     Yes, we made a song. No, we were not asked to. Press play, then try getting it out of your head by Tuesday.
   </p>
@@ -172,5 +179,30 @@
     </picture>
     Made with 💙 in Scotland<br>© 2026 Look Behind You Software Ltd
   </footer>
+  <script>
+    (function () {
+      var btn = document.getElementById('share-btn');
+      var note = document.getElementById('share-note');
+      if (!btn) return;
+      var data = {
+        title: 'Binfluencer',
+        text: 'Binfluencer tells you which bin goes out next and reminds you the night before. Free, no account.',
+        url: 'https://lbysoftware.co.uk/binfluencer-public/index.html'
+      };
+      function say(msg) {
+        note.textContent = msg;
+        setTimeout(function () { note.textContent = ''; }, 3000);
+      }
+      btn.addEventListener('click', function () {
+        if (navigator.share) {
+          navigator.share(data).catch(function () {});
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(data.url).then(function () { say('Link copied'); }, function () { say(data.url); });
+        } else {
+          say(data.url);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
