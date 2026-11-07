@@ -37,7 +37,7 @@
     .get a { display: inline-block; background: #14202e; color: #ffffff; text-decoration: none; font-weight: 700; padding: 12px 20px; border-radius: 12px; }
     .get a:hover { background: #0b6bcb; }
     footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid #dde5ee; text-align: center; color: #5b6b7c; font-size: 0.9rem; }
-    footer img { width: 120px; height: auto; border-radius: 12px; display: block; margin: 0 auto 8px; }
+    footer img { width: 160px; height: auto; display: block; margin: 0 auto 8px; }
     @media (prefers-color-scheme: dark) {
       body { color: #e6edf3; background: #0f1720; }
       .tagline, footer, .stat span { color: #9fb0c1; }
@@ -156,7 +156,10 @@
   </p>
 
   <footer>
-    <img src="lby-logo.png" alt="Look Behind You Software logo">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="lby-logo-footer-dark.png">
+      <img src="lby-logo-footer-light.png" alt="Look Behind You Software logo">
+    </picture>
     Made with 💙 in Scotland<br>© 2026 Look Behind You Software Ltd
   </footer>
 </body>
